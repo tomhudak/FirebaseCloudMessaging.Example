@@ -12,12 +12,10 @@ namespace FirebaseCloudMessaging.Example
     {
         static async Task Main(string[] args)
         {
-            var defaultApp = FirebaseApp.Create(new AppOptions()
+            FirebaseApp.Create(new AppOptions()
             {
-                Credential = GoogleCredential.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "token.json")),
+                Credential = GoogleCredential.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "key.json")),
             });
-            Console.WriteLine(defaultApp.Name); // "[DEFAULT]"
-
             var messaging = FirebaseMessaging.DefaultInstance;
 
             var message = new Message()
