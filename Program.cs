@@ -12,12 +12,11 @@ namespace FirebaseCloudMessaging.Example
     {
         static async Task Main(string[] args)
         {
-            FirebaseApp.Create(new AppOptions()
+            var defaultApp = FirebaseApp.Create(new AppOptions()
             {
                 Credential = GoogleCredential.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "key.json")),
             });
-            var messaging = FirebaseMessaging.DefaultInstance;
-
+            Console.WriteLine(defaultApp.Name); // "[DEFAULT]"
             var message = new Message()
             {
                 Data = new Dictionary<string, string>()
@@ -34,7 +33,7 @@ namespace FirebaseCloudMessaging.Example
                 //Token = "d3aLewjvTNw:APA91bE94LuGCqCSInwVaPuL1RoqWokeSLtwauyK-r0EmkPNeZmGavSG6ZgYQ4GRjp0NgOI1p-OAKORiNPHZe2IQWz5v1c3mwRE5s5WTv6_Pbhh58rY0yGEMQdDNEtPPZ_kJmqN5CaIc",
                 Topic = "news"
             };
-
+            var messaging = FirebaseMessaging.DefaultInstance;
             var result = await messaging.SendAsync(message);
             Console.WriteLine(result); //projects/myapp/messages/2492588335721724324
         }
